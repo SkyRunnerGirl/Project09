@@ -31,7 +31,8 @@ class Deck {
                 this.deck.push(card);
             }
         }
-    }
+    return this.deck
+}
 //I also added the method shuffle deck by using a part of the Fisher-Yates method (https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/)
     shuffle() { 
         for(let i = this.deck.length - 1; i > 0; i--) {
@@ -67,7 +68,10 @@ class Game {
             this.player1.hand.push(deck.deck.shift())
             this.player2.hand.push(deck.deck.shift())
         }
-
+        //the for loop, loops through the player hand arrays as long as there are cards
+        //it compares the value of the cards for each loop and the player with the higher value gets a point
+        //tie values give no points to either player
+        //I put console logs to keep track of who won each round and the updated score
         for(let i = 0; i < this.player1.hand.length; i++) {
             if(this.player1.hand[i].value > this.player2.hand[i].value) {
                 this.player1.score ++
@@ -100,7 +104,9 @@ class Game {
                     `)
             }
         }
-
+        //this final statement kicks in when there are no more cards in the player hand arrays
+        //it compares the total score for each player and displays the winner of the game
+        //or if a tie, prompts them to play again
         if(this.player1.score > this.player2.score) {
             console.log(`Player 1 WINS!!
                 Final Score:
@@ -122,6 +128,6 @@ class Game {
         }
     }
 }
-
+//this creates a new instance of the Object game and then calls the method playGame() on that new variable
 const game = new Game
 game.playGame()
